@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-     @Modifying
-     @Query("UPDATE product SET amount = :amount WHERE id = :id")
-     void changeProductAmount(Long id, BigDecimal amount);
+//     @Modifying
+//     @Query("UPDATE product SET amount = :amount WHERE id = :id")
+//     void changeProductAmount(Long id, BigDecimal amount);
 }

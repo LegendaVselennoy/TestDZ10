@@ -10,10 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class ProductService {
     private ProductRepository productRepo;
 
+    public ProductService(ProductRepository productRepo) {
+        this.productRepo = productRepo;
+    }
 
     public Product addProduct(Product p){
         return productRepo.save(p);
@@ -23,16 +26,16 @@ public class ProductService {
         return productRepo.findAll();
     }
 
-    public void transferMoney(Long isSender, Long idReceiver, BigDecimal amount){
-        Optional<Product> sender= productRepo.findById(isSender);
-        Optional<Product> receiver=productRepo.findById(idReceiver);
-
-        BigDecimal senderNewAmount=sender.get().getAmount().add(amount);
-        BigDecimal receiverNewAmount=receiver.get().getAmount().add(amount);
-
-        productRepo.changeProductAmount(isSender,senderNewAmount);
-        productRepo.changeProductAmount(idReceiver,receiverNewAmount);
-    }
+//    public void transferMoney(Long isSender, Long idReceiver, BigDecimal amount){
+//        Optional<Product> sender= productRepo.findById(isSender);
+//        Optional<Product> receiver=productRepo.findById(idReceiver);
+//
+//        BigDecimal senderNewAmount=sender.get().getAmount().add(amount);
+//        BigDecimal receiverNewAmount=receiver.get().getAmount().add(amount);
+//
+//        productRepo.changeProductAmount(isSender,senderNewAmount);
+//        productRepo.changeProductAmount(idReceiver,receiverNewAmount);
+//    }
 
 
     public Product getProductIdUpdate(Long id,Product p){
