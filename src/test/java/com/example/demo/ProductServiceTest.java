@@ -10,7 +10,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -41,5 +44,13 @@ public class ProductServiceTest {
 
         verify(repo).changeProductAmount(p1.getId(),new BigDecimal(900));
         verify(repo).changeProductAmount(p2.getId(),new BigDecimal(1100));
+    }
+
+    @Test
+    public void testList(){
+        List<Product> allFind=repo.findAll();
+        allFind.add(new Product());
+        assertEquals(1,allFind.size());
+        verify(repo).findAll();
     }
 }
